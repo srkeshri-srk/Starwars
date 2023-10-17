@@ -16,10 +16,10 @@ class ScoreViewModel {
     //MARK: - Variables
 //    private var data = [ScoreModel]()
     private var urlString = "https://www.jsonkeeper.com/b/4YJQ"
-    var score: [Int: PlayerData]? //id and their details as value score inc. and match details ScoreModel
+    var score = [Int: PlayerData]() //id and their details as value score inc. and match details ScoreModel
 
     var count: Int {
-        return score?.count ?? 0
+        return score.count
     }
     
     
@@ -65,19 +65,19 @@ class ScoreViewModel {
             let playerfistID = value.player1.id
             let playerfistScore = value.player1.score
             
-            if score?[playerfistID] == nil {
-                score?[playerfistID] = PlayerData(score: value.player1.score, data: value)
+            if score[playerfistID] == nil {
+                score[playerfistID] = PlayerData(score: value.player1.score, data: value)
             } else {
-                score?[playerfistID] = PlayerData(score: value.player1.score + playerfistScore, data: value)
+                score[playerfistID]?.score += value.player1.score
             }
             
             let playerSecondID = value.player2.id
             let playerSecondScore = value.player2.score
             
-            if score?[playerSecondID] == nil {
-                score?[playerSecondID] = PlayerData(score: value.player1.score, data: value)
+            if score[playerSecondID] == nil {
+                score[playerSecondID] = PlayerData(score: value.player2.score, data: value)
             } else {
-                score?[playerSecondID] = PlayerData(score: value.player1.score + playerSecondScore, data: value)
+                score[playerSecondID]?.score = value.player2.score
             }
         }
     }

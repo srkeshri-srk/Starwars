@@ -7,7 +7,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "365239C2-9CC4-4A9D-91D7-1FAA51DC088F"
+            uuid = "9954CABD-D49C-4EF4-A34D-59CB85C004AD"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -18,38 +18,38 @@
             endingLineNumber = "69"
             landmarkName = "setDataAccordingToPlayer(data:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "581104D4-EF85-46C8-AC75-56D0929AD6B7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StarWars/ScoreBoard/ViewModel/ScoreViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "setDataAccordingToPlayer(data:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "449CF83D-938A-4D32-AB8C-910F7ABB7D58"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "StarWars/ScoreBoard/ViewModel/ScoreViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "setDataAccordingToPlayer(data:)"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9954CABD-D49C-4EF4-A34D-59CB85C004AD - cb4ae7021478d652"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StarWars.ScoreViewModel.setDataAccordingToPlayer(data: Swift.Array&lt;StarWars.ScoreModel&gt;) -&gt; ()"
+                  moduleName = "StarWars"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shreyansh/Desktop/Code/Starwars/StarWars/StarWars/ScoreBoard/ViewModel/ScoreViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "872">
+               </Location>
+               <Location
+                  uuid = "9954CABD-D49C-4EF4-A34D-59CB85C004AD - cb4ae7021478d652"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "StarWars.ScoreViewModel.setDataAccordingToPlayer(data: Swift.Array&lt;StarWars.ScoreModel&gt;) -&gt; ()"
+                  moduleName = "StarWars"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/shreyansh/Desktop/Code/Starwars/StarWars/StarWars/ScoreBoard/ViewModel/ScoreViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "884">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
