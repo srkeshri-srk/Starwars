@@ -22,6 +22,10 @@ class ViewController: UIViewController {
     
     private func setupUI() {
         title = "Score Board"
+        self.navigationController?.navigationBar.backgroundColor = .systemPurple
+        self.navigationController?.navigationBar.barStyle = .black
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [.foregroundColor : UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor : UIColor.systemPurple]
     }
     
     private func setupTableView() {
@@ -33,29 +37,40 @@ class ViewController: UIViewController {
     private func fetchData() {
         scoreViewModel.getDatafromAPI {
             DispatchQueue.main.async {
+//                self.scoreViewModel.sortedScore = scoreViewModel.score.sorted { $0.value.score > $1.value.score }
                 self.tableView.reloadData()
             }
         }
     }
-
-
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(scoreViewModel.count)
         return scoreViewModel.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScoreTableViewCell", for: indexPath) as! ScoreTableViewCell
-        cell.configureUI()
-//        print(scoreViewModel.getInfo(at: indexPath.row))
+        if let playerData = scoreViewModel.getInfo(for: scoreViewModel.getPlayerId(for: indexPath.row)) {
+            cell.configureUI(for: scoreViewModel.getPlayerId(for: indexPath.row), and: playerData)
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+                
+        let storyBoard = UIStoryboard(name: "PlayerDetails", bundle: nil)
+        let vc: PlayerDetailsViewController = storyBoard.instantiateViewController(withIdentifier: "PlayerDetailsViewController") as! PlayerDetailsViewController
+        if let scoreData = scoreViewModel.getInfo(for: scoreViewModel.getPlayerId(for: indexPath.row))?.data {
+            vc.scoreData = scoreData
+        }
+        present(vc, animated: true)
     }
     
 }

@@ -9,6 +9,8 @@ import UIKit
 
 class ScoreTableViewCell: UITableViewCell {
     
+    var profileImages: [String] = ["panda1", "panda2", "panda3", "panda4", "panda5", "panda6"]
+    
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var idLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -23,11 +25,11 @@ class ScoreTableViewCell: UITableViewCell {
         scoreLabel.text = nil
     }
     
-    func configureUI() {
+    func configureUI(for playerID: Int, and info: PlayerData) {
         reset()
-        profileImageView.image = UIImage(systemName: "person.fill")
-        idLabel.text = "23"
-        scoreLabel.text = "Score - 100"
+        profileImageView.image = UIImage(named: profileImages.randomElement() ?? "panda1")
+        idLabel.text = String(playerID)
+        scoreLabel.text = "Score - \(info.score)"
     }
 
 }

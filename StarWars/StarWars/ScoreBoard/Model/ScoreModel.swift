@@ -21,3 +21,9 @@ struct Player: Codable {
     var id: Int
     var score: Int
 }
+
+//MARK: - Player Data Model
+struct PlayerData {
+    var score: Int
+    var data: [ScoreModel]
+}
