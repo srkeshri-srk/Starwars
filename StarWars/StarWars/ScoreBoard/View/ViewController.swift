@@ -7,10 +7,19 @@
 
 import UIKit
 
+struct PostModel: Codable {
+    let userId: Int
+    let id: Int
+    let title: String
+    let body: String
+}
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     var scoreViewModel = ScoreViewModel()
+    
+    var client = URLSessionAPIClient()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +27,27 @@ class ViewController: UIViewController {
         setupUI()
         setupTableView()
         fetchData()
+        
+//        client.dataTask("https://www.jsonkeeper.com/b/4YJQ") { (_ result: Result<[ScoreModel], NetworkError>) in
+//            switch result {
+//            case .success(let success):
+//                print(success)
+//            case .failure(let failure):
+//                print(failure)
+//            }
+//        }
+//        
+//        
+//        client.dataTask("https://jsonplaceholder.typicode.com/posts/1") { (_ result: Result<PostModel, NetworkError>) in
+//            switch result {
+//            case .success(let success):
+//                print(success)
+//            case .failure(let failure):
+//                print(failure)
+//            }
+//        }
+        
+        client.downloadTask("https://www.apple.com")
     }
     
     private func setupUI() {
