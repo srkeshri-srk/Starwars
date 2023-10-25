@@ -10,7 +10,6 @@ import UIKit
 class PlayerDetailsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
     var scoreData = [ScoreModel]()
 
     override func viewDidLoad() {

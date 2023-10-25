@@ -7,15 +7,19 @@
 
 import Foundation
 
-class ScoreViewModel {
+final class ScoreViewModel {
     //MARK: - Variables
-    private var urlString = "https://www.jsonkeeper.com/b/4YJQ"
+    private var urlString: String
     private var urlSession = URLSessionAPIClient()
     var score = [Int: PlayerData]()
     var playerID = [Int]()
     
     var count: Int {
         return score.count
+    }
+    
+    init(urlString: String) {
+        self.urlString = urlString
     }
     
     //MARK: - Methods
@@ -44,14 +48,17 @@ class ScoreViewModel {
     func getPlayerId(for index: Int) -> Int {
         return playerID[index]
     }
-    
-    private func storePlayerID(with value: Int) {
+}
+
+
+private extension ScoreViewModel {
+    func storePlayerID(with value: Int) {
         if !playerID.contains(value) {
             playerID.append(value)
         }
     }
     
-    private func setDataAccordingToPlayer(data: [ScoreModel]) {
+    func setDataAccordingToPlayer(data: [ScoreModel]) {
         for value in data {
             let fistPlayerID = value.player1.id
             storePlayerID(with: fistPlayerID)
@@ -76,4 +83,8 @@ class ScoreViewModel {
     }
 }
 
-
+extension ScoreViewModel {
+    static func build() -> ScoreViewModel {
+        ScoreViewModel(urlString: "https://www.jsonkeeper.com/b/4YJQ")
+    }
+}

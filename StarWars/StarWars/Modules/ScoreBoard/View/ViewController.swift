@@ -9,7 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    var scoreViewModel = ScoreViewModel()
+    var scoreViewModel = ScoreViewModel.build()
     
     override func viewDidLoad() {
         super.viewDidLoad()
