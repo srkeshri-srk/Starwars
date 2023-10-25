@@ -55,6 +55,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E17774F62AE8D4FD00FD4BD3 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				E1B9770C2AE05ED70095A5E9 /* NetworkLayer.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		E17774F72AE8D55000FD4BD3 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				E1FD6E812ADEBD13002A069C /* ScoreBoard */,
+				E1FD6E912ADF11C6002A069C /* PlayerDetails */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
 		E1B977062ADF153F0095A5E9 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -94,12 +111,11 @@
 			isa = PBXGroup;
 			children = (
 				E1FD6E802ADEBD07002A069C /* Lifecycle */,
-				E1FD6E812ADEBD13002A069C /* ScoreBoard */,
-				E1FD6E912ADF11C6002A069C /* PlayerDetails */,
+				E17774F72AE8D55000FD4BD3 /* Modules */,
+				E17774F62AE8D4FD00FD4BD3 /* Networking */,
 				E1FD6E742ADEBBCF002A069C /* Assets.xcassets */,
 				E1FD6E762ADEBBCF002A069C /* LaunchScreen.storyboard */,
 				E1FD6E792ADEBBCF002A069C /* Info.plist */,
-				E1B9770C2AE05ED70095A5E9 /* NetworkLayer.swift */,
 			);
 			path = StarWars;
 			sourceTree = "<group>";

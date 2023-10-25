@@ -10,8 +10,8 @@ import Foundation
 class ScoreViewModel {
     //MARK: - Variables
     private var urlString = "https://www.jsonkeeper.com/b/4YJQ"
-    var score = [Int: PlayerData]() //id and their details as value score inc. and match details ScoreModel
-    var sortedScore = Array(arrayLiteral: [Int: PlayerData]()) // temp
+    private var urlSession = URLSessionAPIClient()
+    var score = [Int: PlayerData]()
     var playerID = [Int]()
     
     var count: Int {
@@ -20,34 +20,20 @@ class ScoreViewModel {
     
     //MARK: - Methods
     func getDatafromAPI(completion: @escaping () -> Void) {
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        
-        if let url = URL(string: urlString) {
-            session.dataTask(with: url) { (data, response, error) in
-                if let error = error {
-                    completion()
-                    print("Error: \(error)")
-                }
-                
-                guard let data = data else {
-                    completion()
-                    return
-                }
-                
-                do {
-                    let decoder = JSONDecoder()
-                    let result = try decoder.decode([ScoreModel].self, from: data)
-                    self.setDataAccordingToPlayer(data: result)
-                    completion()
-                } catch {
-                    completion()
-                }
-                
-                
-            }.resume()
-        } else {
-            completion()
+        urlSession.dataTask(urlString) { [weak self] (_ result: Result<[ScoreModel], NetworkError>) in
+            guard let self = self else {
+                completion()
+                return
+            }
+            
+            switch result {
+            case .success(let success):
+                self.setDataAccordingToPlayer(data: success)
+                completion()
+            case .failure(let failure):
+                print(failure.localizedDescription)
+                completion()
+            }
         }
     }
     
