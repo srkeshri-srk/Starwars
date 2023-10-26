@@ -13,16 +13,29 @@ enum NetworkError: Error {
     case noDataFound
 }
 
+class NetworkDelegate: NSObject, URLSessionDelegate, URLSessionDataDelegate, URLSessionDownloadDelegate {
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+        print("Error : ", error)
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        print("Location Delegate : ", location)
+    }
+    
+}
+
 final class URLSessionAPIClient {
     private let configuration: URLSessionConfiguration
     private let urlSession: URLSession
+    private let delegate = NetworkDelegate()
+    var pdfURL: URL?
     
     init() {
         configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = 30.0
         configuration.httpAdditionalHeaders = ["Content-Type" : "application/json"]
         
-        urlSession = URLSession(configuration: self.configuration)
+        urlSession = URLSession(configuration: self.configuration, delegate: delegate, delegateQueue: nil)
     }
     
     public func dataTask<T: Codable>(_ urlString: String, completion: @escaping (_ result: Result<T, NetworkError>) -> Void) {
@@ -59,7 +72,19 @@ final class URLSessionAPIClient {
                 return
             }
             
-            print(url)
+            print("Download Link : ", url)
+
+            let documentsPath = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
+            let destinationURL = documentsPath.appendingPathComponent(url.lastPathComponent)
+            // delete original copy
+            try? FileManager.default.removeItem(at: destinationURL)
+            // copy from temp to Document
+            do {
+                try FileManager.default.copyItem(at: url, to: destinationURL)
+                self.pdfURL = destinationURL
+            } catch let error {
+                print("Copy Error: \(error.localizedDescription)")
+            }
         }.resume()
     }
 }

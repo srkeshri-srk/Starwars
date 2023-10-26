@@ -23,20 +23,20 @@ final class ScoreViewModel {
     }
     
     //MARK: - Methods
-    func getDatafromAPI(completion: @escaping () -> Void) {
+    func getDatafromAPI(completion: (() -> Void)? = nil) {
         urlSession.dataTask(urlString) { [weak self] (_ result: Result<[ScoreModel], NetworkError>) in
             guard let self = self else {
-                completion()
+                completion?()
                 return
             }
             
             switch result {
             case .success(let success):
                 self.setDataAccordingToPlayer(data: success)
-                completion()
+                completion?()
             case .failure(let failure):
                 print(failure.localizedDescription)
-                completion()
+                completion?()
             }
         }
     }

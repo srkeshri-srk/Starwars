@@ -11,6 +11,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     var scoreViewModel = ScoreViewModel.build()
     
+    let urlSession = URLSessionAPIClient()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,6 +38,7 @@ class ViewController: UIViewController {
     private func fetchData() {
         scoreViewModel.getDatafromAPI {
             DispatchQueue.main.async {
+                self.urlSession.downloadTask("https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4")
                 self.tableView.reloadData()
             }
         }
